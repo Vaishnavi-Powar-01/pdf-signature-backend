@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const connectDB = require('./config/database');
 const pdfRoutes = require('./routes/pdfRoutes');
-const PdfService = require('./services/pdfService');
+const pdfservice = require('./services/pdfService');
 const emailRoutes = require('./routes/emailRoutes');
 
 const app = express();
@@ -121,11 +121,11 @@ const startServer = async () => {
     
     // Start cleanup job (run every 6 hours)
     setInterval(() => {
-      PdfService.cleanupTempFiles(24);
+      pdfservice.cleanupTempFiles(24);
     }, 6 * 60 * 60 * 1000);
     
     // Initial cleanup
-    PdfService.cleanupTempFiles(24);
+    pdfservice.cleanupTempFiles(24);
     
     app.listen(PORT, () => {
       console.log(`✅ Server is running on: http://localhost:${PORT}`);
