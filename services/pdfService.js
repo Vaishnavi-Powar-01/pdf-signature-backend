@@ -12,7 +12,6 @@ class PdfService {
     try {
       // Calculate hash of original file - USE CORRECT METHOD NAME
       const originalHash = await HashService.calculateFileHash(file.path);
-      
       // Get PDF metadata
       const pdfBytes = await fs.readFile(file.path);
       // In PdfService.js, when uploading:
