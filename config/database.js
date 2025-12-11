@@ -1,21 +1,23 @@
+// db.js
 const mongoose = require('mongoose');
+require('dotenv').config(); // Load .env variables
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pdf_signature_app');
-    
+    // Connect using MONGODB_URI from .env
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
+
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
     console.log(`📊 Database: ${conn.connection.name}`);
-    
     return conn;
   } catch (error) {
     console.error(`❌ MongoDB Connection Error: ${error.message}`);
-    console.log('💡 Tip: Make sure MongoDB is running locally or update MONGODB_URI in .env');
+    console.log('💡 Tip: Check your MONGODB_URI in .env');
     process.exit(1);
   }
 };
 
-// MongoDB connection events
+// Mongoose connection events
 mongoose.connection.on('connected', () => {
   console.log('✅ Mongoose connected to DB');
 });
