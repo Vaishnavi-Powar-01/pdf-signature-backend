@@ -1,4 +1,4 @@
-const PdfDocument = require('../models/PdfDocument');
+const PdfDocument = require('../models/PdfDocument..js');
 const AuditTrail = require('../models/AuditTrail');
 const HashService = require('./hashService');
 const SignatureService = require('./signatureService');
